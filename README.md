@@ -1,6 +1,6 @@
-## Weather App
+## Nimbusly 🌦️
 
-A simple and intuitive weather application built with React that allows users to search for real-time weather information for any city worldwide. The app uses the OpenWeatherMap API to fetch weather data and displays it in a clean and user-friendly interface.
+Nimbusly is a simple and intuitive weather application built with React that allows users to search for real-time weather information for any city worldwide. The app uses the OpenWeatherMap API to fetch weather data and displays it in a clean and user-friendly interface.
 
 ## Features
 
