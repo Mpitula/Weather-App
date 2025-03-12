@@ -9,10 +9,10 @@
 .app {
   height: 100vh;
   display: flex;
-  background: #e2d4ff;
+  background-image: url(assets/back-icon.jpg);
+  background-size: 100%;
+  background-repeat: no-repeat;
+  background-position: center;
   justify-content: center;
   align-items: center;
-}
-body {
-  height: 100%;
 }
