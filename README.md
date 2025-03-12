@@ -17,7 +17,7 @@ Nimbusly is a simple and intuitive weather application built with React that all
 </figure>
 
 ## Live Demo
-Check out the live demo of the app: [Weather App Live Demo]()
+Check out the live demo of the app: [Weather App Live Demo](https://nimbusly.netlify.app/)
 
 ## Technologies Used
 
