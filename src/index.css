@@ -10,7 +10,7 @@
   height: 100vh;
   display: flex;
   background-image: url(assets/back-icon.jpg);
-  background-size: 100%;
+  background-size: cover;
   background-repeat: no-repeat;
   background-position: center;
   justify-content: center;
