@@ -51,11 +51,11 @@ Prerequisites
 - Create a .env file in the root directory.
 
 **4. Add your OpenWeatherMap API key:**
--VITE_WEATHER_API_KEY=your_api_key_here
+- VITE_WEATHER_API_KEY=your_api_key_here
 
 **5. Run the App:**
 - Copy: npm run dev
--The app will start on http://localhost:3000.
+- The app will start on http://localhost:3000.
 
 ## Usage
 
