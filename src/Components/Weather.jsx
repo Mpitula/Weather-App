@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import "./Weather.css";
 import search_icon from "../assets/search.png";
 import clear_icon from "../assets/clear.png";
@@ -10,7 +10,16 @@ import snow_icon from "../assets/snow.png";
 import wind_icon from "../assets/wind.png";
 
 const Weather = () => {
-  const [weatherData, setWeatherData] = useState(false);
+  
+  const inputRef = useRef();
+
+  const [weatherData, setWeatherData] = useState({
+    humidity: 0,
+    windSpeed: 0,
+    temperature: 0,
+    location: "",
+    icon: clear_icon,
+  });
 
   const [city, setCity] = useState("London");
 
@@ -55,13 +64,21 @@ const Weather = () => {
     }
   };
 
+  const handleKeyPress = (e) => {
+    if (e.key === "Enter") {
+      search(city);
+    }
+  };
+
   useEffect(() => {
     search(city);
   }, [city]);
+
   return (
     <div className="weather">
       <div className="search-bar">
         <input
+          rel={inputRef}
           type="text"
           placeholder="Search..."
           value={city}
