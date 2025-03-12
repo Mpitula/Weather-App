@@ -77,7 +77,12 @@ const Weather = () => {
           value={city}
           onChange={(e) => setCity(e.target.value)}
         />
-        <img src={search_icon} alt="search" onClick={search} className="search-icon" />
+        <img
+          src={search_icon}
+          alt="search"
+          onClick={search}
+          className="search-icon"
+        />
       </div>
 
       {weatherData && (
@@ -103,6 +108,12 @@ const Weather = () => {
           </div>
         </>
       )}
+      <footer>
+        <br />
+        <hr />
+        <br />
+        <p>Copyright &#169; 2025 Alone Mpitula. All Rights Reserved.</p>
+      </footer>
     </div>
   );
 };
