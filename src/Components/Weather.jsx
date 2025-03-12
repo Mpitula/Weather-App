@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useRef, useState } from "react";
 import "./Weather.css";
 import search_icon from "../assets/search.png";
 import clear_icon from "../assets/clear.png";
@@ -10,9 +10,7 @@ import snow_icon from "../assets/snow.png";
 import wind_icon from "../assets/wind.png";
 
 const Weather = () => {
-  
   const inputRef = useRef();
-
   const [weatherData, setWeatherData] = useState({
     humidity: 0,
     windSpeed: 0,
@@ -20,8 +18,7 @@ const Weather = () => {
     location: "",
     icon: clear_icon,
   });
-
-  const [city, setCity] = useState("London");
+  const [city, setCity] = useState("");
 
   const allIcons = {
     "01d": clear_icon,
@@ -40,7 +37,12 @@ const Weather = () => {
     "13n": snow_icon,
   };
 
-  const search = async (city) => {
+  const search = async () => {
+    if (!city.trim()) {
+      alert("Please enter a city name");
+      inputRef.current.focus();
+      return;
+    }
     try {
       const url = `https://api.openweathermap.org/data/2.5/weather?q=${city}&units=metric&appid=${
         import.meta.env.VITE_WEATHER_API_KEY
@@ -50,7 +52,6 @@ const Weather = () => {
         throw new Error(`Error: ${response.statusText}`);
       }
       const data = await response.json();
-      console.log(data);
       const icon = allIcons[data.weather[0].icon] || clear_icon;
       setWeatherData({
         humidity: data.main.humidity,
@@ -60,51 +61,48 @@ const Weather = () => {
         icon: icon,
       });
     } catch (error) {
-      console.error("Failed to fetch weather data:", error);
+      setWeatherData(null);
+      console.error("Failed to fetch weather data!");
+      alert("City not found. Please try again.");
     }
   };
-
-  const handleKeyPress = (e) => {
-    if (e.key === "Enter") {
-      search(city);
-    }
-  };
-
-  useEffect(() => {
-    search(city);
-  }, [city]);
 
   return (
     <div className="weather">
       <div className="search-bar">
         <input
-          rel={inputRef}
+          ref={inputRef}
           type="text"
-          placeholder="Search..."
+          placeholder="Enter city name..."
           value={city}
           onChange={(e) => setCity(e.target.value)}
         />
-        <img src={search_icon} alt="search" onClick={() => search(city)} />
+        <img src={search_icon} alt="search" onClick={search} className="search-icon" />
       </div>
-      <img src={weatherData.icon} alt="" className="weather_icon" />
-      <p className="temperature">{weatherData.temperature}&deg;C</p>
-      <p className="location">{weatherData.location}</p>
-      <div className="weather-data ">
-        <div className="col">
-          <img src={humidity_icon} alt="" />
-          <div>
-            <p>{weatherData.humidity}%</p>
-            <span>Humidity</span>
+
+      {weatherData && (
+        <>
+          <img src={weatherData.icon} alt="" className="weather_icon" />
+          <p className="temperature">{weatherData.temperature}&deg;C</p>
+          <p className="location">{weatherData.location}</p>
+          <div className="weather-data">
+            <div className="col">
+              <img src={humidity_icon} alt="" />
+              <div>
+                <p>{weatherData.humidity}%</p>
+                <span>Humidity</span>
+              </div>
+            </div>
+            <div className="col">
+              <img src={wind_icon} alt="" />
+              <div>
+                <p>{weatherData.windSpeed} km/h</p>
+                <span>Wind speed</span>
+              </div>
+            </div>
           </div>
-        </div>
-        <div className="col">
-          <img src={wind_icon} alt="" />
-          <div>
-            <p>{weatherData.windSpeed} km/h</p>
-            <span>Wind speed</span>
-          </div>
-        </div>
-      </div>
+        </>
+      )}
     </div>
   );
 };
