@@ -41,32 +41,21 @@ Prerequisites
 **Steps**
 
 1. Clone the Repository:
-
-Copy: git clone https://github.com/your-username/weather-app.git
-
-cd weather-app
+- Copy: git clone https://github.com/your-username/weather-app.git
+- cd weather-app
 
 2. Install Dependencies:
-
-Copy
-
-npm install
+- Copy: npm install
 
 3. Set Up Environment Variables:
-
-Create a .env file in the root directory.
+- Create a .env file in the root directory.
 
 4. Add your OpenWeatherMap API key:
-
-VITE_WEATHER_API_KEY=your_api_key_here
+-VITE_WEATHER_API_KEY=your_api_key_here
 
 5. Run the App:
-
-Copy
-
-npm run dev
-
-The app will start on http://localhost:3000.
+- Copy: npm run dev
+-The app will start on http://localhost:3000.
 
 ## Usage
 
